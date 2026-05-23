@@ -18,7 +18,7 @@ export default function Cart() {
 
       {items.map((item) => (
         <div key={item.id} className="cart-item">
-          <img src={item.image} width={60} alt={item.title} />
+          <img src={item.image} width={20} alt={item.title} />
           <h3>{item.title}</h3>
           <p>${item.price}</p>
 
