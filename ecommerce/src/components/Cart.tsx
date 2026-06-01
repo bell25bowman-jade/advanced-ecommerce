@@ -1,6 +1,8 @@
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../store/store";
 import { removeFromCart, updateCount, clearCart } from "../store/cartSlice";
+import { auth } from "../client/FireBaseConfig";
+import { createOrder } from "../store/orderService";
 
 export default function Cart() {
   const dispatch = useDispatch();
@@ -9,6 +11,24 @@ export default function Cart() {
   const totalPrice = items.reduce((sum, i) => sum + i.price * i.count, 0);
 
   if (!items.length) return <p>Your cart is empty.</p>;
+
+  const handleCheckout = async () => {
+    const user = auth.currentUser;
+
+    if (!user) {
+      alert("Please log in before placing an order.");
+      return;
+    }
+
+    await createOrder({
+      userId: user.uid,
+      products: items,
+      totalPrice,
+    });
+
+    dispatch(clearCart());
+    alert("Order placed successfully!");
+  };
 
   return (
     <div>
@@ -38,12 +58,7 @@ export default function Cart() {
         </div>
       ))}
 
-      <button
-        onClick={() => {
-          dispatch(clearCart());
-          alert("Checkout complete!");
-        }}
-      >
+      <button onClick={handleCheckout}>
         Checkout
       </button>
     </div>

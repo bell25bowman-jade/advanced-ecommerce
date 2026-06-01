@@ -1,8 +1,6 @@
 import { signOut } from "firebase/auth";
-import { auth } from "../firebase/firebase";
+import { auth } from "../client/FireBaseConfig";
 
 export const logoutUser = () => {
   return signOut(auth);
 };
-
-<button onClick={logoutUser}>Logout</button>;

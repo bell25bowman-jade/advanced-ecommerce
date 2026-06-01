@@ -1,6 +1,6 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
-import type { Auth } from "firebase/auth";
+import { auth } from "../client/FireBaseConfig";
 
-export const loginUser = (auth: Auth, email: string, password: string) => {
+export const loginUser = (email: string, password: string) => {
   return signInWithEmailAndPassword(auth, email, password);
 };

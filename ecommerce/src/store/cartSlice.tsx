@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Product } from "../types/Products";
+import { Product } from "./types/Products";
 
 export interface CartItem extends Product {
   count: number;
@@ -41,13 +41,13 @@ const cartSlice = createSlice({
       }
       saveState(state.items);
     },
-    removeFromCart: (state, action: PayloadAction<number>) => {
+    removeFromCart: (state, action: PayloadAction<string>) => {
       state.items = state.items.filter((i) => i.id !== action.payload);
       saveState(state.items);
     },
     updateCount: (
       state,
-      action: PayloadAction<{ id: number; count: number }>,
+      action: PayloadAction<{ id: string; count: number }>,
     ) => {
       const item = state.items.find((i) => i.id === action.payload.id);
       if (item) item.count = action.payload.count;

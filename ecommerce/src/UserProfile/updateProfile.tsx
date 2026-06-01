@@ -1,5 +1,5 @@
 import { doc, updateDoc } from "firebase/firestore";
-import { db } from "../firebase/firebase";
+import { db } from "../client/FireBaseConfig";
 
 export const updateUserProfile = async (
   uid: string,
