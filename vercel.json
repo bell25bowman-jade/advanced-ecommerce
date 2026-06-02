@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "installCommand": "npm install --legacy-peer-deps --prefix ecommerce",
-  "buildCommand": "npm run build --prefix ecommerce",
-  "outputDirectory": "ecommerce/dist"
+  "installCommand": "npm install --legacy-peer-deps",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist"
 }
